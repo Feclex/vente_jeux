@@ -1,3 +1,7 @@
 form .erreur {
     color: #FF0000;
 }
+
+form .succes {
+    color: #090;
+}

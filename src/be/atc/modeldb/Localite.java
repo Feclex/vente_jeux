@@ -10,7 +10,10 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Localite.findAll", query="SELECT l FROM Localite l")
+@NamedQueries( { 
+@NamedQuery(name="Localite.findAll", query="SELECT l FROM Localite l"),
+@NamedQuery(name="Localite.findById", query="SELECT l FROM Localite l WHERE l.idLocalite = :idLocalite")
+})
 public class Localite implements Serializable {
 	private static final long serialVersionUID = 1L;
 

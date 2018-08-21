@@ -33,16 +33,34 @@
 				class="requis">*</span></label> <input type="text" id="numeroAdresse"
 				name="numeroAdresse" value="<c:out value="${param.numeroAdresse}"/>"
 				size="20" maxlength="20" /> <br /> <label for="idLocalite">Ville</label>
-			<select name="idLocalite" id="idLocalite">
+
+			 <br /> 
+			 <label for="boitePostale">Boite postale
+			 <span class="requis">*</span></label> 
+			 <input type="text" id="boitePostale" name="boitePostale" value="<c:out value="${param.boitePostale}"/>" size="20" maxlength="60" />
+			<span class="erreur">${erreurs['boitePostale']}</span> <br /> 
+			
+			<select name="localite" id="localite">
 				<c:forEach items="${localites}" var="l">
-					<option value="${l.idLocalite}">${l.codePostale} -
+					<option value="${l.idLocalite}">${l.codePostale}-
 						${l.nomLocalite}</option>
 				</c:forEach>
 
-			</select><br /> <label for="email">Adresse email <span class="requis">*</span></label>
-			<input type="text" id="email" name="email"
-				value="<c:out value="${param.email}"/>" size="20" maxlength="60" />
-			<span class="erreur">${erreurs['email']}</span> <br /> <label
+			</select> <select name="role" id="role">
+				<c:forEach items="${roles}" var="role">
+					<option value="${role.idRole}">${role.nomRole}</option>
+				</c:forEach>
+
+			</select>
+			
+			 <br /> 
+			 <label for="email">Adresse email 
+			 <span class="requis">*</span></label> 
+			 <input type="text" id="email" name="email" value="<c:out value="${param.email}"/>" size="20" maxlength="60" />
+			<span class="erreur">${erreurs['email']}</span> <br /> 
+			
+			
+			<label
 				for="login">Login<span class="requis">*</span></label> <input
 				type="text" id="login" name="login"
 				value="<c:out value="${param.login}"/>" size="20" maxlength="20" />
@@ -56,7 +74,16 @@
 			</label> <input type="password" id="confirmation" name="confirmation"
 				value="<c:out value="${param.confirmation}"/>" size="20"
 				maxlength="20" /> <span class="erreur">${erreurs['motDePasse']}</span>
-			<br /> <input type="submit" value="Register" class="sansLabel" /> <br />
+			<br /> 
+			
+			<br /> 
+			 <label for="niss">NISS
+			 <span class="requis">*</span></label> 
+			 <input type="text" id="niss" name="niss" value="<c:out value="${param.niss}"/>" size="11" maxlength="11" />
+			<span class="erreur">${erreurs['niss']}</span> <br /> 
+			
+			
+			<input type="submit" value="Register" class="sansLabel" /> <br />
 
 
 		</fieldset>

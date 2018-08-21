@@ -42,7 +42,7 @@ public class User implements Serializable {
 	@Column(name="mdp_user")
 	private String mdpUser;
 
-	private int niss;
+	private float niss;
 
 	@Column(name="nom_user")
 	private String nomUser;
@@ -129,11 +129,11 @@ public class User implements Serializable {
 		this.mdpUser = mdpUser;
 	}
 
-	public int getNiss() {
+	public float getNiss() {
 		return this.niss;
 	}
 
-	public void setNiss(int niss) {
+	public void setNiss(float niss) {
 		this.niss = niss;
 	}
 
@@ -208,7 +208,7 @@ public class User implements Serializable {
 	}
 	
 
-	public User(Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,int niss, boolean userIsActif) {
+	public User(Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,float niss, boolean userIsActif) {
 	this.role = idRole;
 	this.nomUser = nomUser;
 	this.prenomUser = prenomUser;
