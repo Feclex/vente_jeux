@@ -39,77 +39,59 @@ import be.atc.modeldb.User;
     
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Traitement des données du formulaire */
-    	log.debug(request.getParameter("nom"));
-    	log.debug(request.getParameter("motdepasse"));
-    	
-    	
-    	
+
     	  /* Préparation de l'objet formulaire */
         ConnexionForm form = new ConnexionForm();
 
         /* Traitement de la requête et récupération du bean en résultant */
         User user = form.connecterUser( request );
-
-        
-/*
-        
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * Utilisateur à la session, sinon suppression du bean de la session.
-      
-        if ( form.getErreurs().isEmpty() ) {
-        	log.debug("ok");
-            
-            log.debug(session.getAttribute("user"));
-        } else {
-        	log.debug("ERREUR");
-            session.setAttribute( ATT_SESSION_USER, null );
-        }
-
-         Stockage du formulaire et du bean dans l'objet request 
-        request.setAttribute( ATT_FORM, form );
-        request.setAttribute( ATT_USER, user );
-        
-*/
-        
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+  	
     	
     	EntityManager em=EMF.getEM();
-  
-    	  try {	
-
-    	    	User test=  em.createNamedQuery("User.findByLogin",User.class).setParameter("loginUser",request.getParameter("nom")).getSingleResult();
-    	    	
-    	    	if (user==null)
-    	    	log.debug("vide");
-    	    	else
-    	    	{
-    	    		/* Récupération de la session depuis la requête */
-    	            HttpSession session = request.getSession();
-    	            session.setAttribute( "user", test );
-    	            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-    	    		//response.sendRedirect(request.getContextPath() + "/index.jsp");
-    	    		//this.getServletContext().getRequestDispatcher("/register").forward(request, response);
-    	    	}
-    	    } catch(Exception e)
-    	    {
-    	    	response.sendRedirect(request.getContextPath() + "#");
-    	    	log.debug("EXCEPTION BATARD");
-    	    }
-    	     finally {
-    	    	 em.close(); 
-    	    	 
-    	     }
-    	  
     	
-       }
+    	try {
+    		
+    		User test=  em.createNamedQuery("User.findByLogin",User.class).setParameter("loginUser",request.getParameter("nom")).getSingleResult();
+    		
+    		if( test != null && test.getMdpUser().equals(request.getParameter("motdepasse"))) {
+        		initSession(request, test);	
+        		this.getServletContext().getRequestDispatcher( "/restreint/espacePerso.jsp" ).forward( request, response );
+        		log.debug("t co lol ") ;
+        	}else {
+        		// MDP PAS BON
+        		// SET REQUEST ERREUR
+        		log.debug("mdp pas bon fdp" );
+        		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+        	}
+    		
+    		
+    	
+    	} catch(Exception e){
+    		// USER PAS LA
+	    	this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+	    	log.debug("EXCEPTION BATARD");
+	    }
+	     finally {
+	    	 em.close(); 
+	    	 
+	     }	
+  
+   }
+
+	    
+    	  
+    	  public void initSession(HttpServletRequest request, User user) {
+
+    	    	// CREATION NEW SESSION WITH NEW USER
+    	    	HttpSession session = request.getSession();
+    	    	session.setAttribute("logged",true);
+    	    	session.setAttribute("user", user);
+    		}
+
+    		public Object getAllUser() {
+    			// TODO Auto-generated method stub
+    			return null;
+    		}
 	}
  
     

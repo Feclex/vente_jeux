@@ -75,14 +75,14 @@ public class Register extends HttpServlet{
 		String resultat;
 		Map<String, String> erreurs = new HashMap<String, String>();
 		
-		
 		String email = request.getParameter( CHAMP_EMAIL );
 		String motDePasse = request.getParameter( CHAMP_PASS );
 		String confirmation = request.getParameter( CHAMP_CONF );
 		String login = request.getParameter( CHAMP_LOGIN );
-		float niss = Float.parseFloat(request.getParameter(CHAMP_NISS));
+		
 		int role =  Integer.parseInt(request.getParameter(CHAMP_ROLE));
 		int localiteInt = Integer.parseInt(request.getParameter(CHAMP_LOCALITE));
+		
 		String nomUser = request.getParameter(CHAMP_NOMUSER);
 		String prenomUser = request.getParameter(CHAMP_PRENOMUSER);
 		String date = request.getParameter(CHAMP_DATE);
@@ -90,14 +90,6 @@ public class Register extends HttpServlet{
 		String numeroAdresse = request.getParameter(CHAMP_NUMADRESSE);
 		String boitePostale = request.getParameter(CHAMP_BOITEPOSTALE);
 
-
-		// VALIDATION
-		
-		// SI PAS ERREUR CREER UTILISATEUR
-		
-		// SI PAS D ERREUR A LA CREATION SET OK
-
-		/* Validation du champ email. */
 
 
 		try {
@@ -113,17 +105,55 @@ public class Register extends HttpServlet{
 			erreurs.put( CHAMP_PASS, e.getMessage() );
 		}
 
+		/* Validation du champ login. */
+		try {
+			Validation.validationTailleChamp( login );
+		} catch ( Exception e ) {
+			erreurs.put( CHAMP_LOGIN, e.getMessage() );
+		}
+		
 		/* Validation du champ nom. */
 		try {
-			Validation.validationNom( nomUser );
+			Validation.validationTailleChamp( nomUser );
 		} catch ( Exception e ) {
 			erreurs.put( CHAMP_NOMUSER, e.getMessage() );
 		}
+		
+		/* Validation du champ prenom. */
+		try {
+			Validation.validationTailleChamp( prenomUser );
+		} catch ( Exception e ) {
+			erreurs.put( CHAMP_PRENOMUSER, e.getMessage() );
+		}
+		
+	
+		
+		/* Validation du champ adresse. */
+		try {
+			Validation.validationTailleChamp( adresse );
+		} catch ( Exception e ) {
+			erreurs.put( CHAMP_ADRESSE, e.getMessage() );
+		}
 
+		/* Validation du champ numero adresse. */
+		try {
+			Validation.validationIsEmpty( numeroAdresse );
+		} catch ( Exception e ) {
+			erreurs.put( CHAMP_NUMADRESSE, e.getMessage() );
+		}
+		
+		/* Validation du champ niss. */
+		try {
+			Validation.validationParsingFloat ( request.getParameter(CHAMP_NISS) );
+		} catch ( Exception e ) {
+			erreurs.put( CHAMP_NISS, e.getMessage() );
+		}
+		
 		/* Initialisation du résultat global de la validation. */
 		if ( erreurs.isEmpty() ) {
 			
 			EntityManager em=EMF.getEM();
+			log.debug("pas d'erreur");
 			
 			Role roleUser = em.createNamedQuery("Role.findById",Role.class).setParameter("idRole",role).getSingleResult();
 			Localite localiteUser = em.createNamedQuery("Localite.findById",Localite.class).setParameter("idLocalite", localiteInt).getSingleResult();
@@ -131,37 +161,45 @@ public class Register extends HttpServlet{
 			
 			
 			// Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,int niss, boolean userIsActif
-			User user = new User(roleUser, nomUser,prenomUser,UtilClass.formatterDate(date), adresse,numeroAdresse,localiteUser,email,boitePostale,login,motDePasse,niss,true);
+			User user = new User(roleUser, nomUser,prenomUser,UtilClass.formatterDate(date), adresse,numeroAdresse,localiteUser,email,boitePostale,login,motDePasse, Float.parseFloat(request.getParameter(CHAMP_NISS)),true);
 			try {
+		
 				em.getTransaction().begin();
 				em.persist(user);
 				em.getTransaction().commit();
 				resultat = "Succès de l'inscription.";
 				request.setAttribute( ATT_RESULTAT, resultat );
-				this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+				List<Localite> localite=  em.createNamedQuery("Localite.findAll",Localite.class).getResultList();
+				List<Role> roles = em.createNamedQuery("Role.findAll",Role.class).getResultList();
+				request.setAttribute("localites", localite);
+				request.setAttribute("roles", roles);
+				this.getServletContext().getRequestDispatcher( "/confirmationRegister.jsp" ).forward( request, response );
 			}catch(Exception e) {
 				
+				e.printStackTrace();
 			}finally {
 				if(em.getTransaction().isActive()) {
 					em.getTransaction().rollback();
 				}
-				em.close();
+				em.close();	
 			}
 			
 			
 			
 			
 		} else {
-			
+		
 			EntityManager em=EMF.getEM();
-
+		
 			List<Localite> localite=  em.createNamedQuery("Localite.findAll",Localite.class).getResultList();
 			List<Role> roles = em.createNamedQuery("Role.findAll",Role.class).getResultList();
-
-			
+			resultat = "Echec l'inscription.";
+			request.setAttribute( ATT_RESULTAT, resultat );
 			request.setAttribute("localites", localite);
 			request.setAttribute("roles", roles);
+			request.setAttribute(ATT_ERREURS, erreurs);
 			em.close(); 
+			
 			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 			
 		}

@@ -26,12 +26,49 @@ public class Validation {
 	    }
 	}
 
-	/* Valide le nom d'utilisateur saisi.*/
-	public static  void validationNom( String login ) throws Exception {
-	    if ( login != null && login.trim().length() < 3 ) {
-	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères." );
+	
+	/* Valide le parse*/
+	
+	public static  void validationParsingFloat( String champfloat ) throws Exception {
+		try {
+			float champfloatParse = Float.parseFloat(champfloat);
+			 if ( champfloat.trim().length() != 11 ) {
+			        throw new Exception( "Ce champ doit contenir 11 caractères." );
+			    }
+			 }
+		catch(Exception e){
+			 throw new Exception( "Champ est vide" );
+		}
+	   
+	}
+	
+	public static  void validationParsingInt( String champint ) throws Exception {
+		try {
+			float champintParse = Integer.parseInt(champint);
+			 if ( champint.trim().length() != 0 ) {
+			        throw new Exception( "Ce champ doit contenir des chiffres" );
+			    }
+			 }
+		catch(Exception e){
+			 throw new Exception( "Champ est vide" );
+		}
+	   
+	}
+
+	/* Valide le champ < 3 caractère.*/
+	
+	public static  void validationTailleChamp( String champ ) throws Exception {
+	    if ( champ != null && champ.trim().length() < 3 ) {
+	        throw new Exception( "Ce champ doit contenir au moins 3 caractères." );
 	    }
 	}
 	
-
+	
+	/* Valide le champ != vide */
+	public static  void validationIsEmpty( String empty ) throws Exception {
+	    if ( empty != null && empty.trim().length() <=0 ) {
+	        throw new Exception( "Ce champ ne peut pas être vide");
+	    }
+	}
+	
 }

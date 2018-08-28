@@ -15,13 +15,15 @@
 
 
 			<label for="nom">Nom d'utilisateur</label> <input type="text"
-				id="nom" name="nom" value="" size="20" maxlength="20" /> <br /> <label
+				id="nom" name="nom" value="" size="20" maxlength="20" /> <br /> 
+				<span class="erreur">${erreurs['nom']}</span> <br /><label
 				for="motdepasse">Mot de passe <span class="requis">*</span></label>
 			<input type="password" id="motdepasse" name="motdepasse" value=""
-				size="20" maxlength="20" /> <span class="erreur">${form.erreurs['motdepasse']}</span>
-			<br /> <input type="submit" value="Login" class="sansLabel" /> <br />
+				size="20" maxlength="20" />
+			<br /> <input type="submit" value="Login" class="sansLabel" />
+				 <br />
 
-			<p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
+			
 			<%-- Vérification de la présence d'un objet utilisateur en session --%>
 			<c:if test="${!empty sessionScope.user}">
 				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
@@ -29,10 +31,20 @@
 					${sessionScope.user.nomUser}</p>
 
 			</c:if>
+			
+				<c:if test="${empty sessionScope.user}">
+				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
+				<p class="erreurs">Login ou mot de passe incorrect</p>
+
+			</c:if>
 		</fieldset>
 	</form>
+	<a href="editeruser">update user</a>
+	
+	<a href="restreint/espacePerso.jsp">Espace client</a>
+	<a href="espacePublic.jsp">Espace public</a>
 	<a href="register">S'enregister</a>
-	<a href="index.jsp">Index</a>
+	<a href="index.jsp">Home</a>
 	<a href="disconnect">Se déconnecter</a>
 </body>
 </html>

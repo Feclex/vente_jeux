@@ -12,6 +12,10 @@
 	${sessionScope.user.nomUser}
 
 	<br>
+		<a href="editeruser">update user</a>
+	
+	<a href="restreint/espacePerso.jsp">Espace client</a>
+	<a href="espacePublic.jsp">Espace public</a>
 	<a href="register">S'enregister</a>
 	<a href="login">Se connecter</a>
 
