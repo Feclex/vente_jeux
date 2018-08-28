@@ -24,7 +24,6 @@ import be.atc.dao.EntityFinderImpl;
 import be.atc.modeldb.Localite;
 import be.atc.modeldb.Role;
 import be.atc.modeldb.User;
-import be.atc.forms.CreationUserForm;
 
 
 @WebServlet("/register")
@@ -144,7 +143,7 @@ public class Register extends HttpServlet{
 		
 		/* Validation du champ niss. */
 		try {
-			Validation.validationParsingFloat ( request.getParameter(CHAMP_NISS) );
+			Validation.validationParsingLong ( request.getParameter(CHAMP_NISS) );
 		} catch ( Exception e ) {
 			erreurs.put( CHAMP_NISS, e.getMessage() );
 		}
@@ -155,13 +154,13 @@ public class Register extends HttpServlet{
 			EntityManager em=EMF.getEM();
 			log.debug("pas d'erreur");
 			
-			Role roleUser = em.createNamedQuery("Role.findById",Role.class).setParameter("idRole",role).getSingleResult();
-			Localite localiteUser = em.createNamedQuery("Localite.findById",Localite.class).setParameter("idLocalite", localiteInt).getSingleResult();
+			Role roleUser = em.createNamedQuery("Role.findByID",Role.class).setParameter("idRole",role).getSingleResult();
+			Localite localiteUser = em.createNamedQuery("Localite.findByID",Localite.class).setParameter("idLocalite", localiteInt).getSingleResult();
 			
 			
 			
 			// Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,int niss, boolean userIsActif
-			User user = new User(roleUser, nomUser,prenomUser,UtilClass.formatterDate(date), adresse,numeroAdresse,localiteUser,email,boitePostale,login,motDePasse, Float.parseFloat(request.getParameter(CHAMP_NISS)),true);
+			User user = new User(roleUser, nomUser,prenomUser,UtilClass.formatterDate(date), adresse,numeroAdresse,localiteUser,email,boitePostale,login,motDePasse, Long.parseLong(request.getParameter(CHAMP_NISS)),true);
 			try {
 		
 				em.getTransaction().begin();

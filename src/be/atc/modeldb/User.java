@@ -12,9 +12,9 @@ import java.util.List;
  */
 @Entity
 @NamedQueries( { 
-	@NamedQuery(name="User.findByID", query="SELECT u FROM User u WHERE u.idUser = :idUser"),
-	@NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.loginUser = :loginUser"),
-	@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+	@NamedQuery(name="User.findByID", query="SELECT u FROM User u WHERE u.idUser = :idUser AND u.userIsActif = true"),
+	@NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.loginUser = :loginUser AND u.userIsActif = true"),
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u WHERE u.userIsActif = true"),
 	
 		})
 
@@ -43,7 +43,7 @@ public class User implements Serializable {
 	@Column(name="mdp_user")
 	private String mdpUser;
 
-	private float niss;
+	private long niss;
 
 	@Column(name="nom_user")
 	private String nomUser;
@@ -130,11 +130,11 @@ public class User implements Serializable {
 		this.mdpUser = mdpUser;
 	}
 
-	public float getNiss() {
+	public long getNiss() {
 		return this.niss;
 	}
 
-	public void setNiss(float niss) {
+	public void setNiss(long niss) {
 		this.niss = niss;
 	}
 
@@ -209,7 +209,7 @@ public class User implements Serializable {
 	}
 	
 
-	public User(Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,float niss, boolean userIsActif) {
+	public User(Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,long niss, boolean userIsActif) {
 	this.role = idRole;
 	this.nomUser = nomUser;
 	this.prenomUser = prenomUser;

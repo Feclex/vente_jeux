@@ -90,5 +90,12 @@
 		</fieldset>
 	</form>
 	<span class="resultat">${resultat}</span> <br /> 
+	
+	<a href="registerproduit">Créer produit</a>
+	<a href="editeruser">Update profil</a>
+	<a href="restreint/espacePerso">Espace client</a>
+	<a href="espacePublic">Espace public</a>
+	<a href="register">S'enregister</a>
+	<a href="login">Se connecter</a>
 </body>
 </html>

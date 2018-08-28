@@ -3,6 +3,7 @@ package be.atc.modeldb;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -11,7 +12,13 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Produit.findAll", query="SELECT p FROM Produit p")
+
+
+@NamedQueries( { 
+	@NamedQuery(name="Produit.findByID", query="SELECT u FROM Produit u WHERE u.idProduit = :idProduit"),
+	@NamedQuery(name="Produit.findAll", query="SELECT p FROM Produit p")
+	
+		})
 public class Produit implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +30,7 @@ public class Produit implements Serializable {
 	private String nomProduit;
 
 	@Column(name="prix_produit")
-	private BigDecimal prixProduit;
+	private float prixProduit;
 
 	@Column(name="produit_is_actif")
 	private boolean produitIsActif;
@@ -60,11 +67,11 @@ public class Produit implements Serializable {
 		this.nomProduit = nomProduit;
 	}
 
-	public BigDecimal getPrixProduit() {
+	public float getPrixProduit() {
 		return this.prixProduit;
 	}
 
-	public void setPrixProduit(BigDecimal prixProduit) {
+	public void  setPrixProduit(float prixProduit) {
 		this.prixProduit = prixProduit;
 	}
 
@@ -127,5 +134,16 @@ public class Produit implements Serializable {
 
 		return stock;
 	}
+	
+
+
+	public Produit(String nomProduit,float prixProduit, Categorie idCategorie, boolean produitIsActif) {
+		this.prixProduit = prixProduit;
+		this.nomProduit = nomProduit;
+		this.categorie = idCategorie;
+		this.produitIsActif = produitIsActif;
+		
+	}
+
 
 }
