@@ -3,7 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="utf-8" />
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
 <title>Register</title>
 
 <link type="text/css" rel="stylesheet" href="ressources/css/style.css" />
@@ -23,7 +33,7 @@
 				value="<c:out value="${param.prenom}"/>" size="20" maxlength="20" />
 			<span class="erreur">${erreurs['prenom']}</span> <br /> <label
 				for="dateNaissance">Date de naissance <span class="requis">*</span></label>
-			<input type="date" id="dateNaissance" name="dateNaissance"
+			<input class="datepicker" id="dateNaissance" name="dateNaissance"
 				value="<c:out value="${param.dateNaissance}"/>" size="20"
 				maxlength="20" /> <br /> <label for="adresse">Adresse <span
 				class="requis">*</span></label> <input type="text" id="adresse"
@@ -89,6 +99,11 @@
 
 		</fieldset>
 	</form>
+		<script>
+            $(function () {
+                $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+            });
+        </script>
 	<span class="resultat">${resultat}</span> <br /> 
 	
 	<a href="registerproduit">Créer produit</a>
