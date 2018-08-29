@@ -138,5 +138,17 @@ public class Commande implements Serializable {
 
 		return detailCommande;
 	}
+	
+	public Commande(int numCommande, String typeTransport, Date dateCommande, boolean commandeIsActif, Date dateArrivee, Transport idTransport, User idUser) 
+	{
+		this.numCommande = numCommande;
+		this.typeTransport = typeTransport;
+		this.dateCommande = dateCommande;
+		this.commandeIsActif = commandeIsActif;
+		this.dateArrivee = dateArrivee;
+		this.transport = idTransport;
+		this.user = idUser;
+	}
+
 
 }
