@@ -2,7 +2,6 @@ package be.atc.modeldb;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -11,7 +10,15 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Transport.findAll", query="SELECT t FROM Transport t")
+		
+
+@NamedQueries( { 
+	
+	
+	@NamedQuery(name="Transport.findByID", query="SELECT t FROM Transport t WHERE t.idTransport = :idTransport"),
+	@NamedQuery(name="Transport.findAll", query="SELECT t FROM Transport t  WHERE t.transportIsActif = true")
+	
+		})
 public class Transport implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +27,7 @@ public class Transport implements Serializable {
 	private int idTransport;
 
 	@Column(name="prix_transport")
-	private BigDecimal prixTransport;
+	private float prixTransport;
 
 	@Column(name="transport_is_actif")
 	private boolean transportIsActif;
@@ -43,11 +50,11 @@ public class Transport implements Serializable {
 		this.idTransport = idTransport;
 	}
 
-	public BigDecimal getPrixTransport() {
+	public float getPrixTransport() {
 		return this.prixTransport;
 	}
 
-	public void setPrixTransport(BigDecimal prixTransport) {
+	public void setPrixTransport(float prixTransport) {
 		this.prixTransport = prixTransport;
 	}
 
@@ -89,4 +96,12 @@ public class Transport implements Serializable {
 		return commande;
 	}
 
+	public Transport(String typeTransport,float prixTransport,  boolean transportIsActif) {
+		this.typeTransport = typeTransport;
+		this.prixTransport = prixTransport;
+		this.transportIsActif = transportIsActif;
+		
+	}
+
+	
 }

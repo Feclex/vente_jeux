@@ -13,8 +13,8 @@ import java.util.List;
 
 
 @NamedQueries( { 
-	@NamedQuery(name="Categorie.findByID", query="SELECT c FROM Categorie c WHERE c.idCategorie = :idCategorie"),
-	@NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c")
+	@NamedQuery(name="Categorie.findByID", query="SELECT c FROM Categorie c WHERE c.idCategorie = :idCategorie AND c.categorieIsActif = true"),
+	@NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c WHERE c.categorieIsActif = true")
 
 	
 		})
@@ -82,6 +82,11 @@ public class Categorie implements Serializable {
 		produit.setCategorie(null);
 
 		return produit;
+	}
+	
+	public Categorie(String nomCategorie, boolean categorieIsActif) {
+		this.nomCategorie = nomCategorie;
+		this.categorieIsActif= categorieIsActif;	
 	}
 
 }

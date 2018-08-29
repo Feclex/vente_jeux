@@ -12,7 +12,9 @@
 	${sessionScope.user.nomUser}
 
 	<br>
-	<a href="registerproduit">Créer produit</a>
+			<a href="registertransport">Créer un transport</a>
+ <a href="registerproduit">Créer produit</a>
+	  	<a href="editerproduit">Update produit</a>
 	<a href="editeruser">Update profil</a>
 	<a href="restreint/espacePerso">Espace client</a>
 	<a href="espacePublic">Espace public</a>
