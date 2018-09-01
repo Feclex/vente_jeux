@@ -33,8 +33,6 @@ public class Commande implements Serializable {
 	@Column(name="num_commande")
 	private int numCommande;
 
-	@Column(name="type_transport")
-	private String typeTransport;
 
 	//bi-directional many-to-one association to Transport
 	@ManyToOne
@@ -93,13 +91,8 @@ public class Commande implements Serializable {
 		this.numCommande = numCommande;
 	}
 
-	public String getTypeTransport() {
-		return this.typeTransport;
-	}
 
-	public void setTypeTransport(String typeTransport) {
-		this.typeTransport = typeTransport;
-	}
+
 
 	public Transport getTransport() {
 		return this.transport;
@@ -139,10 +132,9 @@ public class Commande implements Serializable {
 		return detailCommande;
 	}
 	
-	public Commande(int numCommande, String typeTransport, Date dateCommande, boolean commandeIsActif, Date dateArrivee, Transport idTransport, User idUser) 
+	public Commande(int numCommande, Date dateCommande, boolean commandeIsActif, Date dateArrivee, Transport idTransport, User idUser) 
 	{
 		this.numCommande = numCommande;
-		this.typeTransport = typeTransport;
 		this.dateCommande = dateCommande;
 		this.commandeIsActif = commandeIsActif;
 		this.dateArrivee = dateArrivee;

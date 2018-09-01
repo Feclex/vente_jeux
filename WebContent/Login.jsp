@@ -1,33 +1,40 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
+
+<%@ include file="../template/header.jsp"%>
+
 <title>Login</title>
-<link type="text/css" rel="stylesheet" href="form.css" />
+
 </head>
 <body>
-	<form method="post" action="login">
-		<fieldset>
-			<legend>Connexion</legend>
-			<p>Vous pouvez vous connecter via ce formulaire.</p>
 
 
-			<label for="nom">Nom d'utilisateur</label> <input type="text"
-				id="nom" name="nom" value="" size="20" maxlength="20" /> <br /> 
-				<span class="erreur">${erreurs['nom']}</span> <br /><label
-				for="motdepasse">Mot de passe <span class="requis">*</span></label>
+<section class="login-block">
+    <div class="container">
+	<div class="row ">	
+		<div class="col login-sec">
+		    <h2 class="text-left">Connectez-vous</h2>
+		 	<form method="post" action="login" class="login-form">   
+		 	  <div class="form-group">
+ 	<label for="nom" class="text-uppercase">Nom d'utilisateur<span class="requis">*</span></label> <input type="text"
+				id="nom" name="nom" value="" size="20" maxlength="20"  class="form-control"  /> 
+				<span class="erreur">${erreurs['nom']}</span> 
+    
+  </div>
+  <div class="form-group">
+    <label
+				for="motdepasse" class="text-uppercase">Mot de passe <span class="requis">*</span></label>
 			<input type="password" id="motdepasse" name="motdepasse" value=""
-				size="20" maxlength="20" />
-			<br /> <input type="submit" value="Login" class="sansLabel" />
-				 <br />
+				size="20" maxlength="20" class="form-control"  /> <br>
+			<input type="submit" value="Login" class="btn " />
 
-			
-			<%-- Vérification de la présence d'un objet utilisateur en session --%>
+  </div>
+  
+  
+</form>
+
+<%-- V�rification de la pr�sence d'un objet utilisateur en session --%>
 			<c:if test="${!empty sessionScope.user}">
 				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-				<p class="succes">Vous êtes connecté(e) avec le compte :
+				<p class="succes">Vous �tes connect�(e) avec le compte :
 					${sessionScope.user.nomUser}</p>
 
 			</c:if>
@@ -38,18 +45,13 @@
 
 			</c:if>
 		</fieldset>
-	</form>
-	
-				<a href="registercommande">Créer une commande</a>
-	<a href="registertransport">Créer un transport</a>
- 	<a href="registercategorie">Créer catégorie</a>
-	<a href="registerproduit">Créer produit</a>
-	  	<a href="editerproduit">Update produit</a>
-	<a href="editeruser">Update profil</a>
-	<a href="restreint/espacePerso">Espace client</a>
-	<a href="espacePublic">Espace public</a>
-	<a href="register">S'enregister</a>
-	<a href="login">Se connecter</a>
-	<a href="disconnect">Se déconnecter</a>
+  </div>
+    </div>
+    </div>
+</section>
+			
+		
 </body>
 </html>
+
+<%@ include file="../template/footer.jsp"%>

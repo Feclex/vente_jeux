@@ -16,7 +16,9 @@ import java.util.List;
 	
 	
 	@NamedQuery(name="Transport.findByID", query="SELECT t FROM Transport t WHERE t.idTransport = :idTransport"),
-	@NamedQuery(name="Transport.findAll", query="SELECT t FROM Transport t  WHERE t.transportIsActif = true")
+	@NamedQuery(name="Transport.findAll", query="SELECT t FROM Transport t  WHERE t.transportIsActif = true"),
+	@NamedQuery(name="Transport.findInactiveTransport", query="SELECT t FROM Transport t WHERE t.transportIsActif = false"),
+	@NamedQuery(name="Transport.findByIDInactive", query="SELECT t FROM Transport t WHERE t.idTransport = :idTransport AND t.transportIsActif = false"),
 	
 		})
 public class Transport implements Serializable {

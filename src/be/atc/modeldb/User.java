@@ -15,6 +15,9 @@ import java.util.List;
 	@NamedQuery(name="User.findByID", query="SELECT u FROM User u WHERE u.idUser = :idUser AND u.userIsActif = true"),
 	@NamedQuery(name="User.findByLogin", query="SELECT u FROM User u WHERE u.loginUser = :loginUser AND u.userIsActif = true"),
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u WHERE u.userIsActif = true"),
+	@NamedQuery(name="User.findInactiveUser", query="SELECT u FROM User u WHERE u.userIsActif = false"),
+	@NamedQuery(name="User.findByIDInactive", query="SELECT u FROM User u WHERE u.idUser = :idUser AND u.userIsActif = false"),
+	
 	
 		})
 
