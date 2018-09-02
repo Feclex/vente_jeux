@@ -34,6 +34,9 @@ public class Produit implements Serializable {
 	@Column(name="prix_produit")
 	private float prixProduit;
 
+	@Column(name="stock_produit")
+	private int stockProduit;
+
 	@Column(name="produit_is_actif")
 	private boolean produitIsActif;
 
@@ -69,6 +72,13 @@ public class Produit implements Serializable {
 		this.nomProduit = nomProduit;
 	}
 
+	public void setStockProduit(int stockProduit) {
+		this.stockProduit = stockProduit;
+	}
+	
+	public int getStockProduit() {
+		return this.stockProduit;
+	}
 	public float getPrixProduit() {
 		return this.prixProduit;
 	}
@@ -139,12 +149,12 @@ public class Produit implements Serializable {
 	
 
 
-	public Produit(String nomProduit,float prixProduit, Categorie idCategorie, boolean produitIsActif) {
+	public Produit(String nomProduit,float prixProduit, Categorie idCategorie, boolean produitIsActif, int stockProduit) {
 		this.prixProduit = prixProduit;
 		this.nomProduit = nomProduit;
 		this.categorie = idCategorie;
 		this.produitIsActif = produitIsActif;
-		
+		this.stockProduit= stockProduit;
 	}
 
 

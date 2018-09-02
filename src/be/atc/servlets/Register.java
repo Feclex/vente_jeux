@@ -152,8 +152,7 @@ public class Register extends HttpServlet{
 		if ( erreurs.isEmpty() ) {
 			
 			EntityManager em=EMF.getEM();
-			log.debug("pas d'erreur");
-			
+		
 			Role roleUser = em.createNamedQuery("Role.findByID",Role.class).setParameter("idRole",role).getSingleResult();
 			Localite localiteUser = em.createNamedQuery("Localite.findByID",Localite.class).setParameter("idLocalite", localiteInt).getSingleResult();
 			

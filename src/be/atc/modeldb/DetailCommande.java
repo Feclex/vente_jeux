@@ -23,7 +23,7 @@ public class DetailCommande implements Serializable {
 	private boolean detailCommandeIsActif;
 
 	@Column(name="prix_achat")
-	private BigDecimal prixAchat;
+	private float prixAchat;
 
 	@Column(name="quantite_produit")
 	private int quantiteProduit;
@@ -57,11 +57,11 @@ public class DetailCommande implements Serializable {
 		this.detailCommandeIsActif = detailCommandeIsActif;
 	}
 
-	public BigDecimal getPrixAchat() {
+	public float getPrixAchat() {
 		return this.prixAchat;
 	}
 
-	public void setPrixAchat(BigDecimal prixAchat) {
+	public void setPrixAchat(float prixAchat) {
 		this.prixAchat = prixAchat;
 	}
 

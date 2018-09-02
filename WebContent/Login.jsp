@@ -42,7 +42,7 @@
 				<c:if test="${empty sessionScope.user}">
 				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
 				<p class="erreurs">Login ou mot de passe incorrect</p>
-
+			<a href="afficherproduit">Je jete un oeil aux produits sans me connecter</a></br>
 			</c:if>
 		</fieldset>
   </div>

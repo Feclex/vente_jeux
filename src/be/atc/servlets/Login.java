@@ -2,6 +2,7 @@ package be.atc.servlets;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import org.apache.log4j.Logger;
 
 import be.atc.dao.EMF;
 import be.atc.dao.EntityFinderImpl;
+import be.atc.modeldb.DetailCommande;
 import be.atc.modeldb.User;
 
 
@@ -56,24 +58,22 @@ import be.atc.modeldb.User;
     		if( test != null && test.getMdpUser().equals(request.getParameter("motdepasse"))) {
         		initSession(request, test);	
         		this.getServletContext().getRequestDispatcher( "/restreint/espacePerso.jsp" ).forward( request, response );
-        		log.debug("t co lol ") ;
         	}else {
-        		// MDP PAS BON
-        		// SET REQUEST ERREUR
-        		log.debug("mdp pas bon fdp" );
         		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
         	}
     		
     		
     	
     	} catch(Exception e){
-    		// USER PAS LA
-	    	this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-	    	log.debug("EXCEPTION BATARD");
+     	this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	    }
 	     finally {
 	    	 em.close(); 
-	    	 
+
+          	if(em.getTransaction().isActive()) {
+          		em.getTransaction().rollback();
+          	}
+          	em.close();
 	     }	
   
    }
@@ -86,6 +86,9 @@ import be.atc.modeldb.User;
     	    	HttpSession session = request.getSession();
     	    	session.setAttribute("logged",true);
     	    	session.setAttribute("user", user);
+    	    	List<DetailCommande> listDetailCommande = new ArrayList();
+    	    	session.setAttribute("panier",listDetailCommande );
+    	    	
     		}
 
     		public Object getAllUser() {
