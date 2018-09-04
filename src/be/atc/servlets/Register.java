@@ -42,7 +42,6 @@ public class Register extends HttpServlet{
 	public static final String CHAMP_ADRESSE = "adresse";
 	public static final String CHAMP_NUMADRESSE = "numeroAdresse";
 	public static final String CHAMP_BOITEPOSTALE = "boitePostale";
-	
 	public static final String ATT_ERREURS  = "erreurs";
 	public static final String ATT_RESULTAT = "resultat";
 	public static final String ATT_USER = "user";
@@ -79,7 +78,6 @@ public class Register extends HttpServlet{
 		String confirmation = request.getParameter( CHAMP_CONF );
 		String login = request.getParameter( CHAMP_LOGIN );
 		
-		int role =  Integer.parseInt(request.getParameter(CHAMP_ROLE));
 		int localiteInt = Integer.parseInt(request.getParameter(CHAMP_LOCALITE));
 		
 		String nomUser = request.getParameter(CHAMP_NOMUSER);
@@ -153,7 +151,7 @@ public class Register extends HttpServlet{
 			
 			EntityManager em=EMF.getEM();
 		
-			Role roleUser = em.createNamedQuery("Role.findByID",Role.class).setParameter("idRole",role).getSingleResult();
+			Role roleUser = em.createNamedQuery("Role.findByID",Role.class).setParameter("idRole",2).getSingleResult();
 			Localite localiteUser = em.createNamedQuery("Localite.findByID",Localite.class).setParameter("idLocalite", localiteInt).getSingleResult();
 			
 			

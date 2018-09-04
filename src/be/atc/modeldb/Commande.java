@@ -11,12 +11,14 @@ import java.util.List;
  * 
  */
 @Entity
+
 @NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
 public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_commande")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCommande;
 
 	@Column(name="commande_is_actif")
@@ -29,10 +31,6 @@ public class Commande implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_commande")
 	private Date dateCommande;
-
-	@Column(name="num_commande")
-	private int numCommande;
-
 
 	//bi-directional many-to-one association to Transport
 	@ManyToOne
@@ -83,17 +81,6 @@ public class Commande implements Serializable {
 		this.dateCommande = dateCommande;
 	}
 
-	public int getNumCommande() {
-		return this.numCommande;
-	}
-
-	public void setNumCommande(int numCommande) {
-		this.numCommande = numCommande;
-	}
-
-
-
-
 	public Transport getTransport() {
 		return this.transport;
 	}
@@ -132,15 +119,13 @@ public class Commande implements Serializable {
 		return detailCommande;
 	}
 	
-	public Commande(int numCommande, Date dateCommande, boolean commandeIsActif, Date dateArrivee, Transport idTransport, User idUser) 
+	public Commande( Date dateCommande, boolean commandeIsActif, Date dateArrivee, Transport idTransport, User idUser) 
 	{
-		this.numCommande = numCommande;
 		this.dateCommande = dateCommande;
 		this.commandeIsActif = commandeIsActif;
 		this.dateArrivee = dateArrivee;
 		this.transport = idTransport;
 		this.user = idUser;
 	}
-
 
 }

@@ -2,8 +2,6 @@ package be.atc.modeldb;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 
@@ -12,8 +10,6 @@ import java.util.List;
  * 
  */
 @Entity
-
-
 @NamedQueries( { 
 	@NamedQuery(name="Produit.findByID", query="SELECT u FROM Produit u WHERE u.idProduit = :idProduit"),
 	@NamedQuery(name="Produit.findAll", query="SELECT p FROM Produit p  WHERE p.produitIsActif = true"),
@@ -34,11 +30,11 @@ public class Produit implements Serializable {
 	@Column(name="prix_produit")
 	private float prixProduit;
 
-	@Column(name="stock_produit")
-	private int stockProduit;
-
 	@Column(name="produit_is_actif")
 	private boolean produitIsActif;
+
+	@Column(name="stock_produit")
+	private int stockProduit;
 
 	//bi-directional many-to-one association to DetailCommande
 	@OneToMany(mappedBy="produit")
@@ -48,10 +44,6 @@ public class Produit implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_categorie")
 	private Categorie categorie;
-
-	//bi-directional many-to-one association to Stock
-	@OneToMany(mappedBy="produit")
-	private List<Stock> stocks;
 
 	public Produit() {
 	}
@@ -72,18 +64,11 @@ public class Produit implements Serializable {
 		this.nomProduit = nomProduit;
 	}
 
-	public void setStockProduit(int stockProduit) {
-		this.stockProduit = stockProduit;
-	}
-	
-	public int getStockProduit() {
-		return this.stockProduit;
-	}
 	public float getPrixProduit() {
 		return this.prixProduit;
 	}
 
-	public void  setPrixProduit(float prixProduit) {
+	public void setPrixProduit(float prixProduit) {
 		this.prixProduit = prixProduit;
 	}
 
@@ -93,6 +78,14 @@ public class Produit implements Serializable {
 
 	public void setProduitIsActif(boolean produitIsActif) {
 		this.produitIsActif = produitIsActif;
+	}
+
+	public int getStockProduit() {
+		return this.stockProduit;
+	}
+
+	public void setStockProduit(int stockProduit) {
+		this.stockProduit = stockProduit;
 	}
 
 	public List<DetailCommande> getDetailCommandes() {
@@ -124,31 +117,6 @@ public class Produit implements Serializable {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-
-	public List<Stock> getStocks() {
-		return this.stocks;
-	}
-
-	public void setStocks(List<Stock> stocks) {
-		this.stocks = stocks;
-	}
-
-	public Stock addStock(Stock stock) {
-		getStocks().add(stock);
-		stock.setProduit(this);
-
-		return stock;
-	}
-
-	public Stock removeStock(Stock stock) {
-		getStocks().remove(stock);
-		stock.setProduit(null);
-
-		return stock;
-	}
-	
-
-
 	public Produit(String nomProduit,float prixProduit, Categorie idCategorie, boolean produitIsActif, int stockProduit) {
 		this.prixProduit = prixProduit;
 		this.nomProduit = nomProduit;
@@ -156,6 +124,5 @@ public class Produit implements Serializable {
 		this.produitIsActif = produitIsActif;
 		this.stockProduit= stockProduit;
 	}
-
 
 }

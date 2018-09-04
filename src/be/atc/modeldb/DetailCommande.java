@@ -2,7 +2,6 @@ package be.atc.modeldb;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
@@ -10,8 +9,15 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
+
+@NamedQueries({
+@NamedQuery(name="DetailCommande.findAll", query="SELECT d FROM DetailCommande d"),
+
+@NamedQuery(name="DetailCommande.findByID", query="SELECT d FROM DetailCommande d WHERE d.idDetailCommande = :idDetailCommande AND d.detailCommandeIsActif = true"),
+
+})
 @Table(name="detail_commande")
-@NamedQuery(name="DetailCommande.findAll", query="SELECT d FROM DetailCommande d")
+
 public class DetailCommande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -88,5 +94,12 @@ public class DetailCommande implements Serializable {
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
-
+	public DetailCommande(Produit produit,int quantiteProduit,  float prixAchat,Commande commande,boolean detailCommandeIsActif) {
+		this.produit = produit;
+		this.quantiteProduit = quantiteProduit;
+		this.prixAchat = prixAchat;
+		this.commande = commande;
+		this.detailCommandeIsActif = detailCommandeIsActif;
+		
+	}
 }

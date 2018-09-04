@@ -1,9 +1,12 @@
 package be.atc.servlets;
 
 
+import be.atc.util.Validation;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -23,7 +26,6 @@ import be.atc.modeldb.User;
 
 	@WebServlet("/login")
 	public class Login extends HttpServlet{
-
 		  public static final String ATT_USER         = "user";
 		    public static final String ATT_FORM         = "form";
 		    public static final String ATT_SESSION_USER = "sessionUser";
@@ -42,7 +44,7 @@ import be.atc.modeldb.User;
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
         /* Traitement des données du formulaire */
 
-    	  /* Préparation de l'objet formulaire */
+    	/* Préparation de l'objet formulaire */
         ConnexionForm form = new ConnexionForm();
 
         /* Traitement de la requête et récupération du bean en résultant */

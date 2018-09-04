@@ -10,7 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-		
+
+
 
 @NamedQueries( { 
 	
@@ -97,7 +98,6 @@ public class Transport implements Serializable {
 
 		return commande;
 	}
-
 	public Transport(String typeTransport,float prixTransport,  boolean transportIsActif) {
 		this.typeTransport = typeTransport;
 		this.prixTransport = prixTransport;
@@ -105,5 +105,4 @@ public class Transport implements Serializable {
 		
 	}
 
-	
 }

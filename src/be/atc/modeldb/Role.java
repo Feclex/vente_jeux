@@ -9,7 +9,8 @@ import java.util.List;
  * The persistent class for the role database table.
  * 
  */
-@Entity
+@Entity	
+
 @NamedQueries( { 
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r"),
 @NamedQuery(name="Role.findByID", query="SELECT r FROM Role r WHERE r.idRole = :idRole")

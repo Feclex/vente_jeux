@@ -3,6 +3,7 @@ package be.atc.modeldb;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -20,7 +21,6 @@ import java.util.List;
 	
 	
 		})
-
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -210,23 +210,21 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-
 	public User(Role idRole, String nomUser, String prenomUser,Date dateNaissance,String adresseUser, String numeroAdresse, Localite idLocalite,String email,String boitePostale,String loginUser,String mdpUser,long niss, boolean userIsActif) {
-	this.role = idRole;
-	this.nomUser = nomUser;
-	this.prenomUser = prenomUser;
-	this.dateNaissance = dateNaissance;
-	this.adresseUser = adresseUser;
-	this.numeroAdresse = numeroAdresse;
-	this.localite = idLocalite;
-	this.email = email;
-	this.boitePostale = boitePostale;
-	this.loginUser= loginUser;
-	this.mdpUser = mdpUser;
-	this.niss = niss;
-	this.userIsActif= userIsActif;
-	
-	}
+		this.role = idRole;
+		this.nomUser = nomUser;
+		this.prenomUser = prenomUser;
+		this.dateNaissance = dateNaissance;
+		this.adresseUser = adresseUser;
+		this.numeroAdresse = numeroAdresse;
+		this.localite = idLocalite;
+		this.email = email;
+		this.boitePostale = boitePostale;
+		this.loginUser= loginUser;
+		this.mdpUser = mdpUser;
+		this.niss = niss;
+		this.userIsActif= userIsActif;
+		
+		}
 
 }

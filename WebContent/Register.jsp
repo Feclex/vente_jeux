@@ -16,41 +16,41 @@
 			<label for="nom" >Nom <span class="requis">*</span></label> <input
 				type="text" class="form-control" id="nom" name="nom"
 				value="<c:out value="${param.nom}"/>" size="20" maxlength="20" /> <span
-				class="erreur">${erreurs['nom']}</span> </div>
+				class="error text-danger">${erreurs['nom']}</span> </div>
 				
 				<div class="form-group col-lg-6">
 				 <label
 				for="prenom"  >Prénom <span class="requis">*</span></label> <input
 				type="text" id="prenom" name="prenom"class="form-control"
 				value="<c:out value="${param.prenom}"/>" size="20" maxlength="20" />
-			<span class="erreur">${erreurs['prenom']}</span> </div>
+			<span class="error text-danger">${erreurs['prenom']}</span> </div>
 			
 				<div class="form-group col-lg-6">
 				<label
 				for="dateNaissance" >Date de naissance <span class="requis">*</span></label>
 			<input class="datepicker" class="form-control" id="dateNaissance" name="dateNaissance"
 				value="<c:out value="${param.dateNaissance}"/>" size="20"
-				maxlength="20" /> </div>
+				maxlength="20" /> <span class="error text-danger">${erreurs['dateNaissance']}</span></div>
 				
 				<div class="form-group col-lg-6">
 				 <label for="adresse" >Adresse <span
 				class="requis">*</span></label> <input type="text" id="adresse" class="form-control"
 				name="adresse" value="<c:out value="${param.adresse}"/>" size="25"
-				maxlength="40" /> <span class="erreur">${erreurs['adresse']}</span>
+				maxlength="40" /> <span  class="error text-danger">${erreurs['adresse']}</span>
 			</div>
 			
 			<div class="form-group col-lg-6">
 			 <label for="numeroAdresse">Numéro adresse <span
 				class="requis">*</span></label> <input type="text" id="numeroAdresse" class="form-control"
 				name="numeroAdresse" value="<c:out value="${param.numeroAdresse}"/>"
-				size="20" maxlength="20" /> <span class="erreur">${erreurs['numeroAdresse']}</span>
+				size="20" maxlength="20" /> <span class="error text-danger">${erreurs['numeroAdresse']}</span>
 				
 			</div>
 			
 			<div class="form-group col-lg-6">
 			 <label for="boitePostale" >Boite postale</label> 
 			 <input type="text" id="boitePostale" class="form-control" name="boitePostale" value="<c:out value="${param.boitePostale}"/>" size="20" maxlength="60" />
-			<span class="erreur">${erreurs['boitePostale']}</span></div> 
+			<span  class="error text-danger">${erreurs['boitePostale']}</span></div> 
 			
 			
 			<div class="form-group col-lg-6">
@@ -69,20 +69,20 @@
 		<div class="form-group col-lg-6">
 			 <label for="email"  >Adresse email  <span class="requis">*</span></label> 
 			 <input type="text" id="email" name="email" value="<c:out value="${param.email}"/>" size="20" maxlength="60"class="form-control" />
-			<span class="erreur">${erreurs['email']}</span></div> 
+			<span  class="error text-danger">${erreurs['email']}</span></div> 
 			
 				<div class="form-group col-lg-6">
 			<label	for="login" >Login<span class="requis">*</span></label> <input
 				type="text" id="login" name="login"class="form-control"
 				value="<c:out value="${param.login}"/>" size="20" maxlength="20" />
-			<span class="erreur">${erreurs['login']}</span> </div> 
+			<span  class="error text-danger">${erreurs['login']}</span> </div> 
 			
 			
 			<div class="form-group col-lg-6">
 			 <label	for="motdepasse" >Mot de passe <span class="requis">*</span></label>
 			<input type="password" id="motdepasse" name="motdepasse"class="form-control"
 				value="<c:out value="${param.motdepasse}"/>" size="20"
-				maxlength="20" /> <span class="erreur">${erreurs['motdepasse']}</span>
+				maxlength="20" /> <span  class="error text-danger">${erreurs['motdepasse']}</span>
 		</div> 
 			<div class="form-group col-lg-6">
 			<label for="confirmation"  >Confirmation du mot de passe <span class="requis">*</span>
@@ -96,9 +96,10 @@
 			 <label for="niss" >NISS
 			 <span class="requis">*</span></label> 
 			 <input type="text" id="niss" class="form-control" name="niss" value="<c:out value="${param.niss}"/>" size="11" maxlength="11" />
-			<span class="erreur">${erreurs['niss']}</span> 
+			<span  class="error text-danger">${erreurs['niss']}</span> 
 				</div> 
-				
+			     <c:if test="${sessionScope.user.role.nomRole =='admin'}">
+               	
 				<div class="form-group col-lg-6">	
 			<label for="role" >Role</label> 
 			<select name="role" id="role" class="form-control"> 
@@ -106,7 +107,7 @@
 					<option value="${role.idRole}">${role.nomRole}</option>
 				</c:forEach>
 
-			</select></div> 
+			</select></div> </c:if>
 				
 			
 			<input type="submit" value="Register" class="btn" /> <br />

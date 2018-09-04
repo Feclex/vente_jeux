@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Entity
 
-
 @NamedQueries( { 
 	@NamedQuery(name="Categorie.findByID", query="SELECT c FROM Categorie c WHERE c.idCategorie = :idCategorie AND c.categorieIsActif = true"),
 	@NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c WHERE c.categorieIsActif = true"),
@@ -20,6 +19,7 @@ import java.util.List;
 	
 	
 		})
+
 public class Categorie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
