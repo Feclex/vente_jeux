@@ -24,7 +24,7 @@ public class Disconnect extends HttpServlet {
 	        HttpSession session = request.getSession();
 	    	List<DetailCommande> panier = (List<DetailCommande>)session.getAttribute("panier");
 	    	
-	        if(panier.isEmpty() == false)
+	        if(panier != null && panier.isEmpty() == false)
 	        {
 	        	EntityManager em = EMF.getEM();
 		        try {

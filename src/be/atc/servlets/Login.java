@@ -70,7 +70,6 @@ import be.atc.modeldb.User;
      	this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	    }
 	     finally {
-	    	 em.close(); 
 
           	if(em.getTransaction().isActive()) {
           		em.getTransaction().rollback();
