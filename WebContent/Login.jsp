@@ -15,7 +15,7 @@
 		 	<form method="post" action="login" class="login-form">   
 		 	  <div class="form-group">
  	<label for="nom" class="text-uppercase">Nom d'utilisateur<span class="requis">*</span></label> <input type="text"
-				id="nom" name="nom" value="" size="20" maxlength="20"  class="form-control"  />  <span
+				id="nom" name="nom" value="" size="20" maxlength="20"  class="form-control"  /> <span
 				class="error text-danger">${erreurs['nom']}</span> 
     
   </div>

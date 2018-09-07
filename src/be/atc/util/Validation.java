@@ -55,7 +55,7 @@ public class Validation {
 	   
 	}
 
-	/* Valide le champ < 3 caractère.*/
+	/* Valide le champ > 3 caractère.*/
 	
 	public static  void validationTailleChamp( String champ ) throws Exception {
 	    if ( champ != null && champ.trim().length() < 3 ) {
