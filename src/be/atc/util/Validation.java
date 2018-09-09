@@ -31,7 +31,6 @@ public class Validation {
 	
 	public static  void validationParsingLong( String champlong ) throws Exception {
 		try {
-			long champLongParse = Long.parseLong(champlong);
 			 if ( champlong.trim().length() != 11 ) {
 			        throw new Exception( "Ce champ doit contenir 11 caractères." );
 			    }
@@ -44,7 +43,6 @@ public class Validation {
 	
 	public static  void validationParsingInt( String champint ) throws Exception {
 		try {
-			long champintParse = Integer.parseInt(champint);
 			 if ( champint.trim().length() != 0 ) {
 			        throw new Exception( "Ce champ doit contenir des chiffres" );
 			    }
@@ -58,7 +56,6 @@ public class Validation {
 
 	public static  void validationParsingFloat( String champfloat ) throws Exception {
 		try {
-			float champfloatParse = Float.parseFloat(champfloat);
 			 if ( champfloat.trim().length() != 0 ) {
 			        throw new Exception( "Ce champ doit contenir des chiffres" );
 			    }

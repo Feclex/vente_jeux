@@ -5,7 +5,6 @@ import java.util.Map;
 import be.atc.util.UtilClass;
 import be.atc.util.Validation;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 

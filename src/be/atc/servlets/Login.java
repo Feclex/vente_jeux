@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 
 
 import be.atc.dao.EMF;
-import be.atc.enumeration.Champ;
 import be.atc.modeldb.DetailCommande;
 import be.atc.modeldb.User;
 import be.atc.util.Validation;

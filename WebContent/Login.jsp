@@ -46,9 +46,9 @@
 				<c:if test="${empty sessionScope.user}">
 				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
 			
-			<a href="afficherproduit">Je jete un oeil aux produits sans me connecter</a></br>
+			<a href="afficherproduit">Je jete un oeil aux produits sans me connecter</a>
 			</c:if>
-		</fieldset>
+
   </div>
     </div>
     </div>
