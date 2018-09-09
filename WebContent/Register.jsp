@@ -110,7 +110,7 @@
 			</select></div> </c:if>
 				
 			
-			<input type="submit" value="Register" class="btn" /> <br />
+			<input type="submit" value="Enregistrement" class="btn" /> <br />
 <span class="resultat">${resultat}</span> <br /> 
 	
 

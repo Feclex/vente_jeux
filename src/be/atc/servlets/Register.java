@@ -20,7 +20,6 @@ import org.apache.log4j.Logger;
 
 
 import be.atc.dao.EMF;
-import be.atc.dao.EntityFinderImpl;
 import be.atc.modeldb.Localite;
 import be.atc.modeldb.Role;
 import be.atc.modeldb.User;

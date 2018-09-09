@@ -23,10 +23,14 @@
     <label
 				for="motdepasse" class="text-uppercase">Mot de passe <span class="requis">*</span></label>
 			<input type="password" id="motdepasse" name="motdepasse" value=""
-				size="20" maxlength="20" class="form-control"  /> <br>
-			<input type="submit" value="Login" class="btn " />
+				size="20" maxlength="20" class="form-control"  />
+				<span
+				class="error text-danger">${erreurs['motdepasse']}</span>  <br>
+			<input type="submit" value="Connexion" class="btn " />
+			
 
   </div>
+  <span class="resultat">${resultat}</span> <br /> 
   
   
 </form>
@@ -41,7 +45,7 @@
 			
 				<c:if test="${empty sessionScope.user}">
 				<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-				<p class="erreurs">Login ou mot de passe incorrect</p>
+			
 			<a href="afficherproduit">Je jete un oeil aux produits sans me connecter</a></br>
 			</c:if>
 		</fieldset>

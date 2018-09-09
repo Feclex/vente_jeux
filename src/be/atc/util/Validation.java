@@ -54,6 +54,20 @@ public class Validation {
 		}
 	   
 	}
+	
+
+	public static  void validationParsingFloat( String champfloat ) throws Exception {
+		try {
+			float champfloatParse = Float.parseFloat(champfloat);
+			 if ( champfloat.trim().length() != 0 ) {
+			        throw new Exception( "Ce champ doit contenir des chiffres" );
+			    }
+			 }
+		catch(Exception e){
+			 throw new Exception( "Champ est vide" );
+		}
+	   
+	}
 
 	/* Valide le champ > 3 caractère.*/
 	
